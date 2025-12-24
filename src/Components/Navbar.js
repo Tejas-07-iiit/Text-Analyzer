@@ -48,6 +48,8 @@ function Navbar() {
         <textarea className="form-control" value={text} onChange={textareachange} id="exampleFormControlTextarea1" rows="9"></textarea>
         <button type="button" onClick={changetoupper} className="btn bg-dark text-light mt-3 mx-5">Upper case</button>
         <button type="button" onClick={changetolower} className="btn bg-dark text-light mt-3">Upper case</button>
+
+        
     </div>
     </div>
         </>
