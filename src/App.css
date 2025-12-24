@@ -12,3 +12,60 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+
+.custom-text {
+  border-color: black;
+}
+
+.custom_nav {
+  text-align: center;
+  margin-left: 47%;
+}
+
+.alltable {
+  display:flex;
+  column-gap: 100px;
+  margin-left: 3.3%;
+}
+
+.alltable .custom-table {
+  width: 50%;
+  border-collapse: collapse;   
+  border-spacing: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 18px;
+}
+
+.alltable .custom-table thead th {
+  background-color: #171718; 
+  color: #ffffff;
+  padding: 14px 16px;
+  font-size: 15px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 600;
+}
+
+.alltable .custom-table tbody th {
+  background-color: #f8fafc;
+  color:  #0c0d0d;
+  font-weight: 500;
+  padding: 12px 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.alltable .custom-table tbody td {
+  padding: 12px 16px;
+  text-align: center;
+  font-weight: 600;
+  color: #0c0d0d;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.alltable .custom-table tbody :hover {
+  background-color: #37373938;
+}
