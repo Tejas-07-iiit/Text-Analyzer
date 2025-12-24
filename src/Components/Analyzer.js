@@ -49,39 +49,38 @@ function Analyzer() {
     <div>
       
     <div className='container'>
-        <h2 className='mt-3'>Welcome to Text Analyzer</h2>
+        <h2 className='mt-3 text'>Welcome to Text Analyzer</h2>
+        <hr></hr>
         <div className="mb-3">
         <label htmlFor="exampleFormControlTextarea1" className="form-label" />
         <textarea className="form-control custom-text" value={text} onChange={textareachange} id="exampleFormControlTextarea1" rows="9"></textarea>
-        <button type="button" onClick={changetoupper} className="btn bg-dark text-light mt-3 mx-3">Upper case</button>
-        <button type="button" onClick={changetolower} className="btn bg-dark text-light mt-3 mx-3">Lower case</button>
-        <button type="button" onClick={cleartext} className="btn bg-dark text-light mt-3 mx-3">Cear text</button>
+        <button type="button" onClick={changetoupper} className="btn bg-dark text-light mt-3 mx-3 text">Upper case</button>
+        <button type="button" onClick={changetolower} className="btn bg-dark text-light mt-3 mx-3 text">Lower case</button>
+        <button type="button" onClick={cleartext} className="btn bg-dark text-light mt-3 mx-3 text">Clear text</button>
     </div>
 
     <hr></hr>
 
-    <div className="alltable">
-        <h2 className='mx-1 mt-1'> Text summary </h2>
-        <table className="custom-table">
-            <thead>
-                <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Count</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <th scope="row">Number of Character In given Text (Without space)</th>
-                <td>{numberofCharacter()}</td>
-                </tr>
-
-                <tr>
-                <th scope="row">Number of Words In given Text</th>
-                <td>{numberofWords()}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    
+    <h2 className='summary text'> Text summary </h2>
+    <table className="custom-table">
+        <thead>
+            <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">Number of Character In given Text (Without space)</th>
+            <td>{numberofCharacter()}</td>
+            </tr>
+            <tr>
+            <th scope="row">Number of Words In given Text</th>
+            <td>{numberofWords()}</td>
+            </tr>
+        </tbody>
+    </table>
     </div>
     </div>
     </>
