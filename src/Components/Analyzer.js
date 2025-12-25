@@ -7,8 +7,10 @@ function Analyzer() {
 
     const mailDetector = () => {
         let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g );
+        if(mail_array) {
         let main_mail = mail_array.join('\n')
         setMail(main_mail)
+        }
     }
 
     const setmail_1 = (event) => {
@@ -53,6 +55,7 @@ function Analyzer() {
 
     const cleartext = () => {
         let text1 = " "
+        setMail(" ")
         setText(text1)
     }
     
