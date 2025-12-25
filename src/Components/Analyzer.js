@@ -1,6 +1,20 @@
 import { useState } from "react"
 
+
 function Analyzer() {
+
+    const [Mail , setMail] = useState("");
+
+    const mailDetector = () => {
+        let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g );
+        let main_mail = mail_array.join('\n')
+        setMail(main_mail)
+    }
+
+    const setmail_1 = (event) => {
+        setMail(event.target.value + '\n')
+
+    }
     
     const changetoupper = ()=> {
         let newtext = text.toUpperCase();   
@@ -49,14 +63,22 @@ function Analyzer() {
     <div>
       
     <div className='container'>
-        <h2 className='mt-3 text'>Welcome to Text Analyzer</h2>
+        <h2 className='mt-3 text'>Everything About Your Text</h2>
         <hr></hr>
         <div className="mb-3">
         <label htmlFor="exampleFormControlTextarea1" className="form-label" />
         <textarea className="form-control custom-text" value={text} onChange={textareachange} id="exampleFormControlTextarea1" rows="9"></textarea>
-        <button type="button" onClick={changetoupper} className="btn bg-dark text-light mt-3 mx-3 text">Upper case</button>
-        <button type="button" onClick={changetolower} className="btn bg-dark text-light mt-3 mx-3 text">Lower case</button>
-        <button type="button" onClick={cleartext} className="btn bg-dark text-light mt-3 mx-3 text">Clear text</button>
+        <div className="center">
+            <button type="button" onClick={changetoupper} className="btn bg-dark text-light mt-3 mx-3 text">Upper case</button>
+            <button type="button" onClick={changetolower} className="btn bg-dark text-light mt-3 mx-3 text">Lower case</button>
+            <button type="button" onClick={cleartext} className="btn bg-dark text-light mt-3 mx-3 text">Clear text</button>
+        </div>
+
+        <div className="mail">
+            <button type="button" onClick={mailDetector} className="btn bg-dark text-light mt-3 mx-3 text">Detect Mail</button>
+            <textarea value={Mail} readOnly onChange={setmail_1} rows="7" className="text_mail"></textarea>
+        </div>
+
     </div>
 
     <hr></hr>

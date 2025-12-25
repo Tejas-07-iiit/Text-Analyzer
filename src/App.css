@@ -77,3 +77,28 @@
 .text {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+.center {
+  margin-left: 35%;
+}
+
+.mail {
+  display: flex;
+  margin-left: 25%;
+  column-gap: 15px;
+  align-items: center;
+}
+
+.mail button {
+  height: 3%;
+}
+
+.text_mail {
+  text-align: center;
+  width: 23vw;
+  margin-top: 17px;
+  border-color: #0c0d0d;
+  border: 2px solid;
+  border-radius: 12px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
