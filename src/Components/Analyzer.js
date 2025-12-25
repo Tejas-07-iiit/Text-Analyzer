@@ -1,21 +1,32 @@
 import { useState } from "react"
 
-
-function Analyzer() {
-
+function Analyzer(props) {
+    
     const [Mail , setMail] = useState("");
+    
+    const [text , setText] = useState(" ");
+    
+    
+    const convertToCamel = () => {
+        let t1 = text.split(' ')
+        for (let i = 0; i < t1.length; i++) {
+            if(t1[i] !== '/[0-9]/' && t1[i] !== '' && t1[i] !== ' '){
+                t1[i] = t1[i].at(0).toUpperCase() + t1[i].slice(1).toLowerCase()
+            }
+        }
+        setText(t1.join(" "))
+    }   
 
     const mailDetector = () => {
         let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g );
         if(mail_array) {
-        let main_mail = mail_array.join('\n')
-        setMail(main_mail)
+            let main_mail = mail_array.join('\n')
+            setMail(main_mail)
         }
     }
 
     const setmail_1 = (event) => {
         setMail(event.target.value + '\n')
-
     }
     
     const changetoupper = ()=> {
@@ -26,12 +37,12 @@ function Analyzer() {
     const textareachange = (event) => {
         setText(event.target.value)
     }
-
+    
     const changetolower = ()=> {
         let newtext1 = text.toLowerCase();
         setText(newtext1)
     }
-
+    
     const numberofCharacter = () => {
         let num_ch = 0
         for (let i = 0; i < text.length; i++) {
@@ -41,7 +52,7 @@ function Analyzer() {
         }
         return num_ch 
     }
-
+    
     const numberofWords = () => {
         let num_words = 0 ;
         let text1 = text.split(" ") ;
@@ -52,19 +63,23 @@ function Analyzer() {
         }
         return num_words
     }
-
+    
+    
     const cleartext = () => {
         let text1 = " "
         setMail(" ")
         setText(text1)
     }
     
-    const [text , setText] = useState(" ");
-
-  return (
-    <>
+    const Clipboardcopy = () => {
+        navigator.clipboard.writeText(text)
+        props.showalert("Copied To clipboard")
+    }
+    
+    return (
+        <>
     <div>
-      
+            
     <div className='container'>
         <h2 className='mt-3 text'>Enter Your Text Here..</h2>
         {/* <h4 className="text"></h4> */}
@@ -74,6 +89,8 @@ function Analyzer() {
         <div className="center">
             <button type="button" onClick={changetoupper} className="btn bg-dark text-light mt-3 mx-3 text">Upper case</button>
             <button type="button" onClick={changetolower} className="btn bg-dark text-light mt-3 mx-3 text">Lower case</button>
+            <button type="button" onClick={convertToCamel} className="btn bg-dark text-light mt-3 mx-3 text">Camel case</button>
+            <button type="button" onClick={Clipboardcopy} className="btn bg-dark text-light mt-3 mx-3 text">Copy</button>
             <button type="button" onClick={cleartext} className="btn bg-dark text-light mt-3 mx-3 text">Clear text</button>
         </div>
 
@@ -88,7 +105,6 @@ function Analyzer() {
 
     <hr></hr>
 
-    
     <h2 className='summary text'> Text summary </h2>
     <table className="custom-table">
         <thead>
