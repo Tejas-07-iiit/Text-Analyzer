@@ -102,3 +102,8 @@
   border-radius: 12px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.download {
+  display: flexbox;
+  margin-left: 42%;
+}

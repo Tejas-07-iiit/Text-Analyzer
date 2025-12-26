@@ -13,8 +13,8 @@ function Analyzer(props) {
         // let topmargin = 10 ;
         // let bottommargin = 10 ;
 
-        console.log(text)
-        console.log(typeof text)
+        
+
         let newPdf = new jsPDF()
         
         newPdf.setFont("helvetica", "bold");
@@ -55,6 +55,41 @@ function Analyzer(props) {
         setText(t1.join(" "))
         console.log(text)
     }   
+
+     const Pdf_mail = (mail) => {
+        // let topmargin = 10 ;
+        // let bottommargin = 10 ;
+
+        
+
+        let newPdf = new jsPDF()
+        
+        newPdf.setFont("helvetica", "bold");
+        newPdf.text("Mail",90,10)
+        newPdf.setLineWidth(0.7); 
+        newPdf.line(10, 15, 200, 15);
+        newPdf.setFont("helvetica", "normal");
+        let line = newPdf.splitTextToSize(Mail,10)
+        let y = 30
+        let pageheight = newPdf.internal.pageSize.getHeight()
+        let j = 0
+        while (j<line.length) {
+            newPdf.text(line[j],10,y)
+            y += 7;
+            if (y+7>pageheight) {
+                newPdf.addPage()
+                y = 10
+            }
+            j += 1
+        }
+
+        newPdf.save(`pdf${i}.pdf`)
+        i += 1
+        const pdf_link = document.createElement('a')
+        pdf_link.href = `./pdf${i}.pdf`
+        pdf_link.download = `./pdf${i}.pdf` 
+        
+    }
 
     const mailDetector = () => {
         let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g );
@@ -132,6 +167,11 @@ function Analyzer(props) {
             <button type="button" onClick={Clipboardcopy} className="btn bg-dark text-light mt-3 mx-3 text">Copy</button>
             <button type="button" onClick={cleartext} className="btn bg-dark text-light mt-3 mx-3 text">Clear text</button>
         </div>
+        <hr></hr>
+        <div className="download">
+            <button type="button" onClick={Pdf_text} className="btn bg-dark text-light mt-1 mx-3 text">Download main Text</button>
+            <button type="button" onClick={Pdf_mail} className="btn bg-dark text-light mt-1 mx-3 text">Download Mail</button>
+        </div>
 
         <hr></hr>
 
@@ -140,9 +180,6 @@ function Analyzer(props) {
             <textarea value={Mail} readOnly onChange={setmail_1} rows="7" className="text_mail"></textarea>
         </div>
 
-        <div className="download">
-            <button type="button" onClick={Pdf_text} className="btn bg-dark text-light mt-3 mx-3 text">Download main Text</button>
-        </div>
     </div>
 
     <hr></hr>
