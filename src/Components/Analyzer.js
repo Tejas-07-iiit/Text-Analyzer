@@ -1,20 +1,59 @@
 import { useState } from "react"
+import {jsPDF} from "jspdf"
+
 
 function Analyzer(props) {
     
     const [Mail , setMail] = useState("");
     
     const [text , setText] = useState(" ");
-    
-    
+    var i = 0;
+
+    const Pdf_text = () => {
+        // let topmargin = 10 ;
+        // let bottommargin = 10 ;
+
+        console.log(text)
+        console.log(typeof text)
+        let newPdf = new jsPDF()
+        
+        newPdf.setFont("helvetica", "bold");
+        newPdf.text("Main Text",90,10)
+        newPdf.setLineWidth(0.7); 
+        newPdf.line(10, 15, 200, 15);
+        newPdf.setFont("helvetica", "normal");
+        let line = newPdf.splitTextToSize(text,190)
+        let y = 30
+        let pageheight = newPdf.internal.pageSize.getHeight()
+        let j = 0
+        while (j<line.length) {
+            newPdf.text(line[j],10,y)
+            y += 7;
+            if (y+7>pageheight) {
+                newPdf.addPage()
+                y = 10
+            }
+            j += 1
+        }
+
+        newPdf.save(`pdf${i}.pdf`)
+        i += 1
+        const pdf_link = document.createElement('a')
+        pdf_link.href = `./pdf${i}.pdf`
+        pdf_link.download = `./pdf${i}.pdf` 
+        
+    }
+
     const convertToCamel = () => {
+        console.log(text)
         let t1 = text.split(' ')
         for (let i = 0; i < t1.length; i++) {
-            if(t1[i] !== '/[0-9]/' && t1[i] !== '' && t1[i] !== ' '){
+            if(t1[i] !== '/[0-9]/' && t1[i] !== ''){
                 t1[i] = t1[i].at(0).toUpperCase() + t1[i].slice(1).toLowerCase()
             }
         }
         setText(t1.join(" "))
+        console.log(text)
     }   
 
     const mailDetector = () => {
@@ -27,7 +66,7 @@ function Analyzer(props) {
 
     const setmail_1 = (event) => {
         setMail(event.target.value + '\n')
-    }
+    }   
     
     const changetoupper = ()=> {
         let newtext = text.toUpperCase();   
@@ -101,6 +140,9 @@ function Analyzer(props) {
             <textarea value={Mail} readOnly onChange={setmail_1} rows="7" className="text_mail"></textarea>
         </div>
 
+        <div className="download">
+            <button type="button" onClick={Pdf_text} className="btn bg-dark text-light mt-3 mx-3 text">Download main Text</button>
+        </div>
     </div>
 
     <hr></hr>

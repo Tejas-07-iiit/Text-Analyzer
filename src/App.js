@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar0';
 import Analyzer from './Components/Analyzer';
 import Alert from './Components/Alert';
 
+
 function App() {
 
 
@@ -15,7 +16,6 @@ function App() {
         setalert(null)
       }, 1300);
   }
-  
   
   return (  
     <>
