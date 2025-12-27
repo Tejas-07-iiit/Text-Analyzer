@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Text-Analyzer/static/css/main.53e39772.css",
-    "main.js": "/Text-Analyzer/static/js/main.5b7cab4f.js",
+    "main.js": "/Text-Analyzer/static/js/main.117ab52a.js",
     "static/js/239.6cc48eab.chunk.js": "/Text-Analyzer/static/js/239.6cc48eab.chunk.js",
     "static/js/977.5c4f4419.chunk.js": "/Text-Analyzer/static/js/977.5c4f4419.chunk.js",
     "static/js/455.1e8cee7c.chunk.js": "/Text-Analyzer/static/js/455.1e8cee7c.chunk.js",
     "static/js/453.a04ae9d0.chunk.js": "/Text-Analyzer/static/js/453.a04ae9d0.chunk.js",
     "index.html": "/Text-Analyzer/index.html",
     "main.53e39772.css.map": "/Text-Analyzer/static/css/main.53e39772.css.map",
-    "main.5b7cab4f.js.map": "/Text-Analyzer/static/js/main.5b7cab4f.js.map",
+    "main.117ab52a.js.map": "/Text-Analyzer/static/js/main.117ab52a.js.map",
     "239.6cc48eab.chunk.js.map": "/Text-Analyzer/static/js/239.6cc48eab.chunk.js.map",
     "977.5c4f4419.chunk.js.map": "/Text-Analyzer/static/js/977.5c4f4419.chunk.js.map",
     "455.1e8cee7c.chunk.js.map": "/Text-Analyzer/static/js/455.1e8cee7c.chunk.js.map",
@@ -16,6 +16,6 @@
   },
   "entrypoints": [
     "static/css/main.53e39772.css",
-    "static/js/main.5b7cab4f.js"
+    "static/js/main.117ab52a.js"
   ]
 }
