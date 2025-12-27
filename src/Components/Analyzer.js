@@ -56,11 +56,9 @@ function Analyzer(props) {
         console.log(text)
     }   
 
-     const Pdf_mail = (mail) => {
+     const Pdf_mail = () => {
         // let topmargin = 10 ;
         // let bottommargin = 10 ;
-
-        
 
         let newPdf = new jsPDF()
         
@@ -69,7 +67,7 @@ function Analyzer(props) {
         newPdf.setLineWidth(0.7); 
         newPdf.line(10, 15, 200, 15);
         newPdf.setFont("helvetica", "normal");
-        let line = newPdf.splitTextToSize(Mail,10)
+        let line = newPdf.splitTextToSize(Mail,100)
         let y = 30
         let pageheight = newPdf.internal.pageSize.getHeight()
         let j = 0
@@ -169,7 +167,7 @@ function Analyzer(props) {
         </div>
         <hr></hr>
         <div className="download">
-            <button type="button" onClick={Pdf_text} className="btn bg-dark text-light mt-1 mx-3 text">Download main Text</button>
+            <button type="button" onClick={Pdf_text} className="btn bg-dark text-light mt-1 mx-3 text">Download Main Text</button>
             <button type="button" onClick={Pdf_mail} className="btn bg-dark text-light mt-1 mx-3 text">Download Mail</button>
         </div>
 

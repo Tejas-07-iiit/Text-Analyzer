@@ -104,6 +104,9 @@
 }
 
 .download {
-  display: flexbox;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
   margin-left: 42%;
+  margin-right: 42%;
 }
