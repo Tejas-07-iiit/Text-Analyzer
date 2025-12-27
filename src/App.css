@@ -20,7 +20,7 @@
 
 .custom_nav {
   text-align: center;
-  height: 40px;
+  height: 45px;
 }
 .navtext {
   margin-left: 47%;
@@ -110,3 +110,17 @@
   margin-left: 42%;
   margin-right: 42%;
 }
+
+body {
+  background-color: #ffffff;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.08) 0px,
+    rgba(0, 0, 0, 0.08) 2px,
+    transparent 2px,
+    transparent 10px
+  );
+}
+
+
+

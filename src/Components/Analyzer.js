@@ -121,8 +121,10 @@ function Analyzer(props) {
     
     const numberofCharacter = () => {
         let num_ch = 0
-        for (let i = 0; i < text.length; i++) {
-            if (text[i] !== " ") {
+        let text1 = text.split(/\s+/) ;
+        text1 = text1.join("")
+        for (let i = 0; i < text1.length; i++) {
+            if (text[i] !== " " && text[i] !== '') {
                 num_ch += 1
             } 
         }
@@ -131,9 +133,9 @@ function Analyzer(props) {
     
     const numberofWords = () => {
         let num_words = 0 ;
-        let text1 = text.split(" ") ;
+        let text1 = text.split(/\s+/) ;
         for (let i = 0; i < text1.length; i++) {
-            if (text1[i] !== " " & text1[i] !== "") {
+            if (text1[i] !== " " && text1[i] !== "") {
                 num_words += 1
             } 
         }
