@@ -67,7 +67,11 @@ function Analyzer(props) {
         newPdf.setLineWidth(0.7); 
         newPdf.line(10, 15, 200, 15);
         newPdf.setFont("helvetica", "normal");
-        let line = newPdf.splitTextToSize(Mail,100)
+        let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g );
+        
+        let main_mail_do = mail_array.join('\n')
+        
+        let line = newPdf.splitTextToSize(main_mail_do,100)
         let y = 30
         let pageheight = newPdf.internal.pageSize.getHeight()
         let j = 0
