@@ -7,12 +7,16 @@ function Analyzer(props) {
     const [Mail , setMail] = useState("");
     
     const [text , setText] = useState(" ");
-    let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g );
+    let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g);
     var i = 0;
 
+
+    const removeWhitespace = () => { 
+        let text2 = text.split(/\s+/)
+        text2=text2.join(' ')
+        setText(text2)
+    }
     const Pdf_text = () => {
-        // let topmargin = 10 ;
-        // let bottommargin = 10 ;
 
         let newPdf = new jsPDF()
         
@@ -56,8 +60,6 @@ function Analyzer(props) {
     }   
 
     const Pdf_mail = () => {
-        // let topmargin = 10 ;
-        // let bottommargin = 10 ;
 
         let newPdf = new jsPDF()
         
@@ -149,7 +151,9 @@ function Analyzer(props) {
     
     const Clipboardcopy_text = () => {
         navigator.clipboard.writeText(text)
-        props.showalert("Text Copied To clipboard")
+        if(text) {
+            props.showalert("Text Copied To clipboard")
+        }
     }
 
     const Clipboardcopy_mail = () => {
@@ -174,6 +178,7 @@ function Analyzer(props) {
             <button type="button" onClick={changetolower} className="btn bg-dark text-light mt-3 mx-3 text">Lower case</button>
             <button type="button" onClick={convertToCamel} className="btn bg-dark text-light mt-3 mx-3 text">Camel case</button>
             <button type="button" onClick={Clipboardcopy_text} className="btn bg-dark text-light mt-3 mx-3 text">Copy</button>
+            <button type="button" onClick={removeWhitespace} className="btn bg-dark text-light mt-3 mx-3 text">White Space</button>
             <button type="button" onClick={cleartext} className="btn bg-dark text-light mt-3 mx-3 text">Clear text</button>
         </div>
         <hr></hr>
