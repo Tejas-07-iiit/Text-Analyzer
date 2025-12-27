@@ -7,13 +7,12 @@ function Analyzer(props) {
     const [Mail , setMail] = useState("");
     
     const [text , setText] = useState(" ");
+    let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g );
     var i = 0;
 
     const Pdf_text = () => {
         // let topmargin = 10 ;
         // let bottommargin = 10 ;
-
-        
 
         let newPdf = new jsPDF()
         
@@ -56,7 +55,7 @@ function Analyzer(props) {
         console.log(text)
     }   
 
-     const Pdf_mail = () => {
+    const Pdf_mail = () => {
         // let topmargin = 10 ;
         // let bottommargin = 10 ;
 
@@ -94,7 +93,6 @@ function Analyzer(props) {
     }
 
     const mailDetector = () => {
-        let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g );
         if(mail_array) {
             let main_mail = mail_array.join('\n')
             setMail(main_mail)
@@ -149,11 +147,18 @@ function Analyzer(props) {
         setText(text1)
     }
     
-    const Clipboardcopy = () => {
+    const Clipboardcopy_text = () => {
         navigator.clipboard.writeText(text)
-        props.showalert("Copied To clipboard")
+        props.showalert("Text Copied To clipboard")
     }
-    
+
+    const Clipboardcopy_mail = () => {
+        navigator.clipboard.writeText(mail_array)
+        if(mail_array) {
+            props.showalert("Mail Copied To clipboard")
+        }
+    }
+
     return (
         <>
     <div>
@@ -168,7 +173,7 @@ function Analyzer(props) {
             <button type="button" onClick={changetoupper} className="btn bg-dark text-light mt-3 mx-3 text">Upper case</button>
             <button type="button" onClick={changetolower} className="btn bg-dark text-light mt-3 mx-3 text">Lower case</button>
             <button type="button" onClick={convertToCamel} className="btn bg-dark text-light mt-3 mx-3 text">Camel case</button>
-            <button type="button" onClick={Clipboardcopy} className="btn bg-dark text-light mt-3 mx-3 text">Copy</button>
+            <button type="button" onClick={Clipboardcopy_text} className="btn bg-dark text-light mt-3 mx-3 text">Copy</button>
             <button type="button" onClick={cleartext} className="btn bg-dark text-light mt-3 mx-3 text">Clear text</button>
         </div>
         <hr></hr>
@@ -178,12 +183,13 @@ function Analyzer(props) {
         </div>
 
         <hr></hr>
-
         <div className="mail">
+        <div className="copy_detect">
             <button type="button" onClick={mailDetector} className="btn bg-dark text-light mt-3 mx-3 text">Detect Mail</button>
+            <button type="button" onClick={Clipboardcopy_mail} className="btn bg-dark text-light mt-3 mx-3 text">Copy Mail</button>
+        </div>
             <textarea value={Mail} readOnly onChange={setmail_1} rows="7" className="text_mail"></textarea>
         </div>
-
     </div>
 
     <hr></hr>

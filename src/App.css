@@ -89,6 +89,11 @@
   align-items: center;
 }
 
+.mail .copy_detect {
+  display: flex;
+  flex-direction: column;
+}
+
 .mail button {
   height: 3%;
 }
@@ -122,5 +127,14 @@ body {
   );
 }
 
+.center button:hover {
+  box-shadow: 0px 0px 1.7px 3px #212529;
+}
 
+.download button:hover {
+  box-shadow: 0px 0px 1.7px 3px #212529;
+}
 
+.mail .copy_detect button:hover {
+  box-shadow: 0px 0px 1.7px 3px #212529;
+}
