@@ -10,7 +10,6 @@ function Analyzer(props) {
     let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g);
     var i = 0;
 
-
     const removeWhitespace = () => { 
         let text2 = text.split(/\s+/)
         text2=text2.join(' ')
@@ -168,39 +167,38 @@ function Analyzer(props) {
     <div>
             
     <div className='container'>
-        <h2 className='mt-3 text'>Enter Your Text Here..</h2>
-        {/* <h4 className="text"></h4> */}
+        <h2 className={`mt-3 text-${props.mode==="light"?"dark":"light"}`}>Enter Your Text Here..</h2>
         <div className="mb-3">
         <label htmlFor="exampleFormControlTextarea1" className="form-label" />
-        <textarea className="form-control custom-text" value={text} onChange={textareachange} id="exampleFormControlTextarea1" rows="9"></textarea>
+        <textarea className={`form-control bg-${props.mode} text-${props.mode==="light"?"dark":"light"} custom-text`} value={text} onChange={textareachange} id="exampleFormControlTextarea1" rows="9"></textarea>
         <div className="center">
-            <button type="button" onClick={changetoupper} className="btn bg-dark text-light mt-3 mx-3 text">Upper case</button>
-            <button type="button" onClick={changetolower} className="btn bg-dark text-light mt-3 mx-3 text">Lower case</button>
-            <button type="button" onClick={convertToCamel} className="btn bg-dark text-light mt-3 mx-3 text">Camel case</button>
-            <button type="button" onClick={Clipboardcopy_text} className="btn bg-dark text-light mt-3 mx-3 text">Copy</button>
-            <button type="button" onClick={removeWhitespace} className="btn bg-dark text-light mt-3 mx-3 text">White Space</button>
-            <button type="button" onClick={cleartext} className="btn bg-dark text-light mt-3 mx-3 text">Clear text</button>
+            <button type="button" onClick={changetoupper} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Upper case</button>
+            <button type="button" onClick={changetolower} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Lower case</button>
+            <button type="button" onClick={convertToCamel} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Camel case</button>
+            <button type="button" onClick={Clipboardcopy_text} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Copy</button>
+            <button type="button" onClick={removeWhitespace} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>White Space</button>
+            <button type="button" onClick={cleartext} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Clear text</button>
         </div>
-        <hr></hr>
+        <hr className="light"></hr>
         <div className="download">
-            <button type="button" onClick={Pdf_text} className="btn bg-dark text-light mt-1 mx-3 text">Download Main Text</button>
-            <button type="button" onClick={Pdf_mail} className="btn bg-dark text-light mt-1 mx-3 text">Download Mail</button>
+            <button type="button" onClick={Pdf_text} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Download Main Text</button>
+            <button type="button" onClick={Pdf_mail} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Download Mail</button>
         </div>
 
         <hr></hr>
         <div className="mail">
         <div className="copy_detect">
-            <button type="button" onClick={mailDetector} className="btn bg-dark text-light mt-3 mx-3 text">Detect Mail</button>
-            <button type="button" onClick={Clipboardcopy_mail} className="btn bg-dark text-light mt-3 mx-3 text">Copy Mail</button>
+            <button type="button" onClick={mailDetector} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Detect Mail</button>
+            <button type="button" onClick={Clipboardcopy_mail} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Copy Mail</button>
         </div>
-            <textarea value={Mail} readOnly onChange={setmail_1} rows="7" className="text_mail"></textarea>
+            <textarea value={Mail} readOnly onChange={setmail_1} rows="7" className= {`bg-${props.mode} text-${props.mode==="light"?"dark":"light"} text_mail`}></textarea>
         </div>
     </div>
 
-    <hr></hr>
+    <hr></hr>                  
 
-    <h2 className='summary text'> Text summary </h2>
-    <table className="custom-table">
+    <h2 className={`summary text-${props.mode==="light"?"dark":"light"} text`}> Text summary </h2>
+   <table className={`table custom-table border-${props.mode === "light" ? "dark" : "light"} `}>
         <thead>
             <tr>
             <th scope="col">Title</th>
@@ -209,19 +207,21 @@ function Analyzer(props) {
         </thead>
         <tbody>
             <tr>
-            <th scope="row">Number of Character In given Text (Without space)</th>
-            <td>{numberofCharacter()}</td>
+            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`} scope="row">Number of Character In given Text (Without space)</th>
+            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`}>{numberofCharacter()}</td>
             </tr>
             <tr>
-            <th scope="row">Number of Words In given Text</th>
-            <td>{numberofWords()}</td>
+            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`} scope="row">Number of Words In given Text</th>
+            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`}>{numberofWords()}</td>
             </tr>
         </tbody>
     </table>
+    
     </div>
     </div>
     </>
-  )
+  );
+    
 }
 
 export default Analyzer;

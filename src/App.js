@@ -7,7 +7,7 @@ import Alert from './Components/Alert';
 
 function App() {
 
-
+  const [mode , changeMode] = useState("light")
   const [alert , setalert] = useState(null)
 
   const showalert = (message) => {
@@ -15,13 +15,25 @@ function App() {
       setInterval(() => {
         setalert(null)
       }, 1300);
+  } 
+
+  const modechange = () => {
+    if(mode === 'light') {
+      changeMode('dark')
+      document.body.style.backgroundColor = 'rgba(33, 37, 41, 0.92)';
+    }
+    else {
+      changeMode('light')
+      document.body.style.backgroundColor = 'white';
+    }
   }
+
   
-  return (  
+  return (
     <>
-    <Navbar/>
+    <Navbar modechange={modechange} mode = {mode}/>
     <Alert alert = {alert}/>
-    <Analyzer showalert = {showalert}/>
+    <Analyzer mode = {mode} showalert = {showalert}/>
    </>
   );
 }

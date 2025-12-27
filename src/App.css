@@ -16,6 +16,7 @@
 
 .custom-text {
   border-color: black;
+  border-radius: 12px;
 }
 
 .custom_nav {
@@ -23,7 +24,7 @@
   height: 45px;
 }
 .navtext {
-  margin-left: 47%;
+  margin-left: 50%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -33,7 +34,7 @@
   border-collapse: collapse;   
   border-spacing: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: #ffffff;
+  border: 1px solid;
   border-radius: 10px;
   overflow: hidden;
   margin-top: 18px;
@@ -102,16 +103,15 @@
   text-align: center;
   width: 23vw;
   margin-top: 17px;
-  border-color: #0c0d0d;
-  border: 2px solid;
-  border-radius: 12px;
+  border-color: #000000;
+  border-radius: 12px; 
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .download {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 10px;  
   margin-left: 42%;
   margin-right: 42%;
 }
@@ -137,4 +137,8 @@ body {
 
 .mail .copy_detect button:hover {
   box-shadow: 0px 0px 1.7px 3px #212529;
+}
+
+.switch {
+  margin-top: 58px;
 }
