@@ -149,8 +149,8 @@ function Analyzer(props) {
     }
     
     const Clipboardcopy_text = () => {
-        navigator.clipboard.writeText(text)
-        if(text) {
+        if(navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text)
             props.showalert("Text Copied To clipboard")
         }
     }
