@@ -162,6 +162,14 @@ function Analyzer(props) {
         }
     }
 
+    const nu_mails =()=> {
+        if(mail_array) {
+            return mail_array.length
+        }
+        else {
+            return 0
+        }
+    }
     return (
         <>
     <div>
@@ -213,6 +221,10 @@ function Analyzer(props) {
             <tr>
             <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`} scope="row">Number of Words In given Text</th>
             <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`}>{numberofWords()}</td>
+            </tr>
+            <tr>
+            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`} scope="row">Number of Mails</th>
+            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`}>{nu_mails()}</td>
             </tr>
         </tbody>
     </table>
