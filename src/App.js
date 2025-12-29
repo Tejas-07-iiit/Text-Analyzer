@@ -14,7 +14,7 @@ function App() {
       setalert(message)
       setInterval(() => {
         setalert(null)
-      }, 1300);
+      }, 1800);
   } 
 
   const modechange = () => {

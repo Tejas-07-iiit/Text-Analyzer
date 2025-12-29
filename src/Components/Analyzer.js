@@ -15,34 +15,39 @@ function Analyzer(props) {
         text2=text2.join(' ')
         setText(text2)
     }
+
     const Pdf_text = () => {
-
-        let newPdf = new jsPDF()
-        
-        newPdf.setFont("helvetica", "bold");
-        newPdf.text("Main Text",90,10)
-        newPdf.setLineWidth(0.7); 
-        newPdf.line(10, 15, 200, 15);
-        newPdf.setFont("helvetica", "normal");
-        let line = newPdf.splitTextToSize(text,190)
-        let y = 30
-        let pageheight = newPdf.internal.pageSize.getHeight()
-        let j = 0
-        while (j<line.length) {
-            newPdf.text(line[j],10,y)
-            y += 7;
-            if (y+7>pageheight) {
-                newPdf.addPage()
-                y = 10
+        if(text) {
+            let newPdf = new jsPDF()
+            
+            newPdf.setFont("helvetica", "bold");
+            newPdf.text("Main Text",90,10)
+            newPdf.setLineWidth(0.7); 
+            newPdf.line(10, 15, 200, 15);
+            newPdf.setFont("helvetica", "normal");
+            let line = newPdf.splitTextToSize(text,190)
+            let y = 30
+            let pageheight = newPdf.internal.pageSize.getHeight()
+            let j = 0
+            while (j<line.length) {
+                newPdf.text(line[j],10,y)
+                y += 7;
+                if (y+7>pageheight) {
+                    newPdf.addPage()
+                    y = 10
+                }
+                j += 1
             }
-            j += 1
-        }
 
-        newPdf.save(`pdf${i}.pdf`)
-        i += 1
-        const pdf_link = document.createElement('a')
-        pdf_link.href = `./pdf${i}.pdf`
-        pdf_link.download = `./pdf${i}.pdf` 
+            newPdf.save(`pdf${i}.pdf`)
+            i += 1
+            const pdf_link = document.createElement('a')
+            pdf_link.href = `./pdf${i}.pdf`
+            pdf_link.download = `./pdf${i}.pdf` 
+            }
+        else {
+            props.showalert("Text Box Is Empty")
+        }
         
     }
 
@@ -60,46 +65,51 @@ function Analyzer(props) {
 
     const Pdf_mail = () => {
 
-        let newPdf = new jsPDF()
-        
-        newPdf.setFont("helvetica", "bold");
-        newPdf.text("Mail",90,10)
-        newPdf.setLineWidth(0.7); 
-        newPdf.line(10, 15, 200, 15);
-        newPdf.setFont("helvetica", "normal");
-        let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g );
-        
-        let main_mail_do = mail_array.join('\n')
-        
-        let line = newPdf.splitTextToSize(main_mail_do,100)
-        let y = 30
-        let pageheight = newPdf.internal.pageSize.getHeight()
-        let j = 0
-        while (j<line.length) {
-            newPdf.text(line[j],10,y)
-            y += 7;
-            if (y+7>pageheight) {
-                newPdf.addPage()
-                y = 10
+        if(mail_array) {
+            let newPdf = new jsPDF()
+            
+            newPdf.setFont("helvetica", "bold");
+            newPdf.text("Mail",90,10)
+            newPdf.setLineWidth(0.7); 
+            newPdf.line(10, 15, 200, 15);
+            newPdf.setFont("helvetica", "normal");
+            let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g );
+            let main_mail_do = []
+            main_mail_do = mail_array.join('\n')
+            
+            let line = newPdf.splitTextToSize(main_mail_do,100)
+            let y = 30
+            let pageheight = newPdf.internal.pageSize.getHeight()
+            let j = 0
+            while (j<line.length) {
+                newPdf.text(line[j],10,y)
+                y += 7;
+                if (y+7>pageheight) {
+                    newPdf.addPage()
+                    y = 10
+                }
+                j += 1
             }
-            j += 1
+            
+            newPdf.save(`pdf${i}.pdf`)
+            i += 1
+            const pdf_link = document.createElement('a')
+            pdf_link.href = `./pdf${i}.pdf`
+            pdf_link.download = `./pdf${i}.pdf` 
         }
-
-        newPdf.save(`pdf${i}.pdf`)
-        i += 1
-        const pdf_link = document.createElement('a')
-        pdf_link.href = `./pdf${i}.pdf`
-        pdf_link.download = `./pdf${i}.pdf` 
-        
+        else {
+            props.showalert("No mail in the Given Text")
+        }
     }
-
+    
+    
     const mailDetector = () => {
         if(mail_array) {
             let main_mail = mail_array.join('\n')
             setMail(main_mail)
         }
     }
-
+    
     const setmail_1 = (event) => {
         setMail(event.target.value + '\n')
     }   
@@ -120,10 +130,10 @@ function Analyzer(props) {
     
     const numberofCharacter = () => {
         let num_ch = 0
-        let text1 = text.split(/\s+/) ;
+        let text1 = text.split(/\s+/);
         text1 = text1.join("")
         for (let i = 0; i < text1.length; i++) {
-            if (text[i] !== " " && text[i] !== '') {
+            if (text1[i] !== " " && text1[i] !== '') {
                 num_ch += 1
             } 
         }
@@ -151,17 +161,19 @@ function Analyzer(props) {
     const Clipboardcopy_text = () => {
         if(navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text)
-            props.showalert("Text Copied To clipboard")
+            if(text){
+                props.showalert("Text Copied To clipboard")
+            }
         }
     }
-
+    
     const Clipboardcopy_mail = () => {
         navigator.clipboard.writeText(mail_array)
         if(mail_array) {
             props.showalert("Mail Copied To clipboard")
         }
     }
-
+    
     const nu_mails =()=> {
         if(mail_array) {
             return mail_array.length
@@ -170,6 +182,7 @@ function Analyzer(props) {
             return 0
         }
     }
+ 
     return (
         <>
     <div>
@@ -188,7 +201,7 @@ function Analyzer(props) {
             <button type="button" onClick={cleartext} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Clear text</button>
         </div>
         <hr className="light"></hr>
-        <div className="download">
+        <div className="download">  
             <button type="button" onClick={Pdf_text} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Download Main Text</button>
             <button type="button" onClick={Pdf_mail} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Download Mail</button>
         </div>
@@ -207,6 +220,7 @@ function Analyzer(props) {
 
     <h2 className={`summary text-${props.mode==="light"?"dark":"light"} text`}> Text summary </h2>
    <table className={`table custom-table border-${props.mode === "light" ? "dark" : "light"} `}>
+
         <thead>
             <tr>
             <th scope="col">Title</th>
@@ -233,7 +247,7 @@ function Analyzer(props) {
     </div>
     </>
   );
-    
+  
 }
 
 export default Analyzer;

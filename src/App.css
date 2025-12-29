@@ -67,10 +67,6 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
-.custom-table tbody :hover {
-  background-color: #37373938;
-}
-
 .summary {
   text-align: center;
 }
@@ -127,16 +123,16 @@ body {
   );
 }
 
-.center button:hover {
-  box-shadow: 0px 0px 1.7px 3px #212529;
+.center button:hover{
+  box-shadow: 0px 0px 6px 3px #000000;
 }
 
 .download button:hover {
-  box-shadow: 0px 0px 1.7px 3px #212529;
+  box-shadow: 0px 0px 6px 3px #030303;
 }
 
 .mail .copy_detect button:hover {
-  box-shadow: 0px 0px 1.7px 3px #212529;
+  box-shadow: 0px 0px 6px 3px #000000;
 }
 
 .switch {
