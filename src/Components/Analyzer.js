@@ -1,13 +1,15 @@
 import { useState } from "react"
 import {jsPDF} from "jspdf"
+import * as xlsx from "xlsx"
 
 
 function Analyzer(props) {
     
     const [Mail , setMail] = useState("");
     
-    const [text , setText] = useState(" ");
-    let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g);
+    const [text , setText] = useState("");
+    let mail_array = text.match(/[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}/g);
+
     var i = 0;
 
     const removeWhitespace = () => { 
@@ -32,7 +34,7 @@ function Analyzer(props) {
             while (j<line.length) {
                 newPdf.text(line[j],10,y)
                 y += 7;
-                if (y+7>pageheight) {
+                if (y+7>pageheight) { 
                     newPdf.addPage()
                     y = 10
                 }
@@ -73,7 +75,8 @@ function Analyzer(props) {
             newPdf.setLineWidth(0.7); 
             newPdf.line(10, 15, 200, 15);
             newPdf.setFont("helvetica", "normal");
-            let mail_array= text.match(/[a-zA-Z0-9]+\w+@[a-zA-Z0-9]+\.+[a-zA-Z0-9]+/g );
+            let mail_array = text.match(/[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}/g);
+
             let main_mail_do = []
             main_mail_do = mail_array.join('\n')
             
@@ -128,7 +131,7 @@ function Analyzer(props) {
         setText(newtext1)
     }
     
-    const numberofCharacter = () => {
+    const numberofCharacterWithoutSpace = () => {
         let num_ch = 0
         let text1 = text.split(/\s+/);
         text1 = text1.join("")
@@ -138,6 +141,9 @@ function Analyzer(props) {
             } 
         }
         return num_ch 
+    }
+    const numberofCharacterWithSpace = () => {
+        return text.length
     }
     
     const numberofWords = () => {
@@ -182,7 +188,13 @@ function Analyzer(props) {
             return 0
         }
     }
- 
+    
+    const Download_summary_xls = () => {
+        const table = document.getElementById("summary")
+        const workbook = xlsx.utils.table_to_book(table ,{sheet : "sheet1"});
+        xlsx.writeFile(workbook,"summary-table.xlsx")
+    }
+
     return (
         <>
     <div>
@@ -208,10 +220,10 @@ function Analyzer(props) {
 
         <hr></hr>
         <div className="mail">
-        <div className="copy_detect">
-            <button type="button" onClick={mailDetector} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Detect Mail</button>
-            <button type="button" onClick={Clipboardcopy_mail} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Copy Mail</button>
-        </div>
+            <div className="copy_detect">
+                <button type="button" onClick={mailDetector} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Detect Mail</button>
+                <button type="button" onClick={Clipboardcopy_mail} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Copy Mail</button>
+            </div>
             <textarea value={Mail} readOnly onChange={setmail_1} rows="7" className= {`bg-${props.mode} text-${props.mode==="light"?"dark":"light"} text_mail`}></textarea>
         </div>
     </div>
@@ -219,10 +231,9 @@ function Analyzer(props) {
     <hr></hr>                  
 
     <h2 className={`summary text-${props.mode==="light"?"dark":"light"} text`}> Text summary </h2>
-   <table className={`table custom-table border-${props.mode === "light" ? "dark" : "light"} `}>
-
+   <table id="summary" className={`table custom-table border-${props.mode === "light" ? "dark" : "light"} `}>
         <thead>
-            <tr>
+            <tr>    
             <th scope="col">Title</th>
             <th scope="col">Count</th>
             </tr>
@@ -230,7 +241,11 @@ function Analyzer(props) {
         <tbody>
             <tr>
             <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`} scope="row">Number of Character In given Text (Without space)</th>
-            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`}>{numberofCharacter()}</td>
+            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`}>{numberofCharacterWithoutSpace()}</td>
+            </tr>
+            <tr>
+            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`} scope="row">Number of Character In given Text (With space)</th>
+            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`}>{numberofCharacterWithSpace()}</td>
             </tr>
             <tr>
             <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`} scope="row">Number of Words In given Text</th>
@@ -242,7 +257,9 @@ function Analyzer(props) {
             </tr>
         </tbody>
     </table>
-    
+    <div className="download-btn">
+        <button type="button" onClick={Download_summary_xls} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Download Summary</button>
+    </div>
     </div>
     </div>
     </>
