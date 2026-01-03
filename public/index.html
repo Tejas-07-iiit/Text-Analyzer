@@ -17,8 +17,9 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
-    gtag('config', 'G-QV56SB2M7L');
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      gtag('config', 'G-QV56SB2M7L');
+    }
   </script>
   <body>
     <div id="root"></div>
