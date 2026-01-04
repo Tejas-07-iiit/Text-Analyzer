@@ -27,7 +27,7 @@ my goal is to make text processing simple for everyone.`
                     </div>
 
                     <div className="mb-1">
-                        <label htmlFor="exampleInputPassword1" Name="Description" className={`form-label text-dark  text`}>Query or Review</label>
+                        <label htmlFor="exampleInputPassword1" name="Description" className={`form-label text-dark  text`}>Query or Review</label>
                         <textarea className={`form-control text-${props.mode==="light"?"dark":"light"} custom-text`} id="exampleFormControlTextarea1" rows="4"></textarea>
                     </div>
 
