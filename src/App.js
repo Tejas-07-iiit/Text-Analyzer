@@ -3,7 +3,9 @@ import './App.css';
 import Navbar from './Components/Navbar0';
 import Analyzer from './Components/Analyzer';
 import Alert from './Components/Alert';
-
+import About from './Components/About';
+import {BrowserRouter, Route , Routes} from "react-router-dom";
+import Contact from './Components/Contact';
 
 function App() {
 
@@ -31,9 +33,16 @@ function App() {
   
   return (
     <>
-    <Navbar modechange={modechange} mode = {mode}/>
-    <Alert alert = {alert}/>
-    <Analyzer mode = {mode} showalert = {showalert}/>
+    <BrowserRouter>
+      <Navbar modechange={modechange} mode = {mode}/>
+
+      <Routes>
+          <Route exact path="/about" element={<About mode = {mode} />}/>
+          <Route exact path="/contact" element={<Contact mode = {mode}/>}/>
+          <Route exact path="/" element ={<Analyzer mode = {mode} showalert = {showalert}/>}/>
+      </Routes>
+      <Alert alert = {alert}/>
+    </BrowserRouter>
    </>
   );
 }

@@ -8,7 +8,7 @@ function Analyzer(props) {
     const [Mail , setMail] = useState("");
     
     const [text , setText] = useState("");
-    let mail_array = text.match(/[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}/g);
+    let mail_array = text.match(/[Link-zA-Z0-9._%+-]+@([Link-zA-Z0-9-]+\.)+[Link-zA-Z]{2,}/g);
 
     var i = 0;
 
@@ -43,8 +43,8 @@ function Analyzer(props) {
 
             newPdf.save(`pdf${i}.pdf`)
             i += 1
-            const pdf_link = document.createElement('a')
-            pdf_link.href = `./pdf${i}.pdf`
+            const pdf_link = document.createElement('Link')
+            pdf_link.to = `./pdf${i}.pdf`
             pdf_link.download = `./pdf${i}.pdf` 
             }
         else {
@@ -75,7 +75,7 @@ function Analyzer(props) {
             newPdf.setLineWidth(0.7); 
             newPdf.line(10, 15, 200, 15);
             newPdf.setFont("helvetica", "normal");
-            let mail_array = text.match(/[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}/g);
+            let mail_array = text.match(/[Link-zA-Z0-9._%+-]+@([Link-zA-Z0-9-]+\.)+[Link-zA-Z]{2,}/g);
 
             let main_mail_do = []
             main_mail_do = mail_array.join('\n')
@@ -96,8 +96,8 @@ function Analyzer(props) {
             
             newPdf.save(`pdf${i}.pdf`)
             i += 1
-            const pdf_link = document.createElement('a')
-            pdf_link.href = `./pdf${i}.pdf`
+            const pdf_link = document.createElement('Link')
+            pdf_link.to = `./pdf${i}.pdf`
             pdf_link.download = `./pdf${i}.pdf` 
         }
         else {
