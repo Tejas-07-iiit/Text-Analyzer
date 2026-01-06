@@ -4,8 +4,9 @@ import Navbar from './Components/Navbar0';
 import Analyzer from './Components/Analyzer';
 import Alert from './Components/Alert';
 import About from './Components/About';
-import {BrowserRouter, Route , Routes} from "react-router-dom";
+import {Route , Routes} from "react-router-dom";
 import Contact from './Components/Contact';
+import { HashRouter } from "react-router-dom";
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
   
   return (
     <>
-    <BrowserRouter>
+    <HashRouter>
       <Navbar modechange={modechange} mode = {mode}/>
 
       <Routes>
@@ -42,7 +43,7 @@ function App() {
           <Route exact path="/" element ={<Analyzer mode = {mode} showalert = {showalert}/>}/>
       </Routes>
       <Alert alert = {alert}/>
-    </BrowserRouter>
+    </HashRouter>
    </>
   );
 }
