@@ -15,7 +15,7 @@ function App() {
 
   const showalert = (message) => {
       setalert(message)
-      setInterval(() => {
+      setTimeout(() => {
         setalert(null)
       }, 1800);
   } 
@@ -36,13 +36,13 @@ function App() {
     <>
     <HashRouter>
       <Navbar modechange={modechange} mode = {mode}/>
+      <Alert alert = {alert}/>
 
       <Routes>
           <Route exact path="/about" element={<About mode = {mode} />}/>
           <Route exact path="/contact" element={<Contact mode = {mode}/>}/>
           <Route exact path="/" element ={<Analyzer mode = {mode} showalert = {showalert}/>}/>
       </Routes>
-      <Alert alert = {alert}/>
     </HashRouter>
    </>
   );

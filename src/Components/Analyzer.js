@@ -167,9 +167,13 @@ function Analyzer(props) {
     const Clipboardcopy_text = () => {
         if(navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text)
-            if(text){
+            if(text !== ""){
                 props.showalert("Text Copied To clipboard")
             }
+            else {
+                props.showalert("Kindly enter text in the box")
+            }
+
         }
     }
     
@@ -177,6 +181,9 @@ function Analyzer(props) {
         navigator.clipboard.writeText(mail_array)
         if(mail_array) {
             props.showalert("Mail Copied To clipboard")
+        }
+        else {
+            props.showalert("Mail Box is Empty")
         }
     }
     
