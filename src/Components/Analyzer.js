@@ -247,20 +247,20 @@ function Analyzer(props) {
         </thead>
         <tbody>
             <tr>
-            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`} scope="row">Number of Character In given Text (Without space)</th>
-            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`}>{numberofCharacterWithoutSpace()}</td>
+            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"} text`} scope="row">Number of Character In given Text (Without space)</th>
+            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"} text`}>{numberofCharacterWithoutSpace()}</td>
             </tr>
             <tr>
-            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`} scope="row">Number of Character In given Text (With space)</th>
-            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`}>{numberofCharacterWithSpace()}</td>
+            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"} text`} scope="row">Number of Character In given Text (With space)</th>
+            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"} text`}>{numberofCharacterWithSpace()}</td>
             </tr>
             <tr>
-            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`} scope="row">Number of Words In given Text</th>
-            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`}>{numberofWords()}</td>
+            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"} text`} scope="row">Number of Words In given Text</th>
+            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"} text`}>{numberofWords()}</td>
             </tr>
             <tr>
-            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`} scope="row">Number of Mails</th>
-            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"}`}>{nu_mails()}</td>
+            <th className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"} text`} scope="row">Number of Mails</th>
+            <td className={`bg-${props.mode} text-${props.mode==="light"?"dark":"light"} text`}>{nu_mails()}</td>
             </tr>
         </tbody>
     </table>

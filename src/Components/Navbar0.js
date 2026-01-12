@@ -13,6 +13,9 @@ function Navbar0(props) {
                         <li className="nav-item">
                             <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" style={{marginTop:'3px'}} to="/">Home</Link>
                          </li>
+                        {/* <li className="nav-item">
+                            <Link className={`nav-link ${location.pathname==="/textspark"? 'active': "" }`} style={{marginTop:'3px'}} to="/textspark">TextSpark</Link>
+                        </li> */}
                         <li className="nav-item">
                             <Link className={`nav-link ${location.pathname==="/about"? 'active': "" }`} style={{marginTop:'3px'}} to="/about">About</Link>
                         </li>
