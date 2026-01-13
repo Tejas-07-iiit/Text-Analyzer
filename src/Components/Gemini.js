@@ -1,11 +1,16 @@
 import { GoogleGenAI } from "@google/genai";
 import { useState } from "react";
-
+import Loader from "./Loader"
 const Gemini = () => {
-  
+  console.log("API KEY:", process.env.GEMINI_API_KEY);
+
+
   const [summary,setSummary] = useState("")
   const [output,setOutput] = useState("")
+  const [load , setload] = useState(false)
   
+  const apikey = process.env.GEMINI_API_KEY
+
   const prompt = `
 You are an expert content summarizer.
 
@@ -41,15 +46,19 @@ Output format example:
 Now summarize the following text: 
 `
 
-const ai = new GoogleGenAI({apiKey:"AIzaSyDv0nVluWQrR5-aLQT5ibgvgHOMqsvwOuM"});
+const ai = new GoogleGenAI({apiKey:apikey});
 const summarize = async () => {
+  setload(true)
   const response = await ai.models.generateContent({
         model: "gemini-2.5-flash-lite",
         contents: prompt+summary,
       });
       const ans = response.text
+      setload(false)
       setOutput(ans)
+      
   }
+
 
   const handletext = (event) => {
     console.log(summary)
@@ -70,6 +79,9 @@ const summarize = async () => {
         <button onClick={summarize} className="ai-btn">Generate Summary</button>
         <div className="line_ai"></div>
 
+        {
+         load && <Loader />
+        }
         <textarea className="output" id="height_text" value={output} readOnly ></textarea>
 
         {/* <pre className="output">{output}</pre> */}

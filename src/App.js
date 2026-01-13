@@ -38,7 +38,7 @@ function App() {
     <HashRouter>
       <Navbar modechange={modechange} mode = {mode}/>
       <Alert alert = {alert}/>
-
+      
       <Routes>
           {/* <Route exact path="/textspark" element={<Gemini mode = {mode} />}/> */}
           <Route exact path="/about" element={<About mode = {mode} />}/>
