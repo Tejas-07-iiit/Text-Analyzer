@@ -41,7 +41,6 @@ function App() {
      
       <Routes>
           {/* <Route exact path="/textspark" element={<Gemini mode = {mode} />}/> */}
-          {/* <Route exact path='/Dropdown' element={<Dropdown/>}/> */}
           <Route exact path="/about" element={<About mode = {mode} />}/>
           <Route exact path="/contact" element={<Contact mode = {mode}/>}/>
           <Route exact path="/" element ={<Analyzer mode = {mode} showalert = {showalert}/>}/>

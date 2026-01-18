@@ -4,7 +4,7 @@ import { useState } from "react";
 function Navbar0(props) {
 
     let location = useLocation()
-
+    console.log(location)
     const [size,setsize] = useState(false)
 
     const size1 = () => {
@@ -28,16 +28,16 @@ function Navbar0(props) {
                 {!size && <div>
                     <ul className="navbar-nav text-wrap">
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" style={{marginTop:'3px'}} to="/">Home</Link>
+                            <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} style={{marginTop:'3px'}} to="/">Home</Link>
                          </li>
                         {/* <li className="nav-item">
                             <Link className={`nav-link ${location.pathname==="/textspark"? 'active': "" }`} style={{marginTop:'3px'}} to="/textspark">TextSpark</Link>
                         </li> */}
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/about"? 'active': "" }`} style={{marginTop:'3px'}} to="/about">About</Link>
+                            <Link className={`nav-link ${location.pathname==="/about"? "active": ""}`} style={{marginTop:'3px'}} to="/about">About</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/contact"? 'active': "" }`} style={{marginTop:'3px'}} to="/contact">Contact</Link>
+                            <Link className={`nav-link ${location.pathname==="/contact"? "active": "" }`} style={{marginTop:'3px'}} to="/contact">Contact</Link>
                         </li>
                         
                     </ul>
