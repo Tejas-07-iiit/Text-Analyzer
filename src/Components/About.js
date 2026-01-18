@@ -35,8 +35,8 @@ const About = (props) => {
                 
   return (
    <>   <h2 className={`my-3 mx-4 text-${props.mode==="light"?"dark":"light"} text`}>Welcome to Text Analyzer</h2>
-       <div className={`text-${props.mode==="light"?"dark":"light"} text about`} style={{ whiteSpace: "pre-wrap"}}>
-                {text1}
+       <div className={`text-${props.mode==="light"?"dark":"light"} text about border border-${props.mode === "light"?"dark":"secondary"}`} style={{ whiteSpace: "pre-line"}}>
+                <div className="mx-2">{text1}</div>
         </div>
         
    </>

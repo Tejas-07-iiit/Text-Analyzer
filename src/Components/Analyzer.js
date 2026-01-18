@@ -109,7 +109,10 @@ function Analyzer(props) {
     const mailDetector = () => {
         if(mail_array) {
             let main_mail = mail_array.join('\n')
-            setMail(main_mail)
+            setMail(main_mail)  
+        }
+        else {
+            setMail("")  
         }
     }
     
@@ -212,12 +215,12 @@ function Analyzer(props) {
         <label htmlFor="exampleFormControlTextarea1" className="form-label" />
         <textarea className={`form-control bg-${props.mode} text-${props.mode==="light"?"dark":"light"} custom-text`} value={text} onChange={textareachange} id="exampleFormControlTextarea1" rows="9"></textarea>
         <div className="center">
-            <button type="button" onClick={changetoupper} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Upper case</button>
-            <button type="button" onClick={changetolower} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Lower case</button>
-            <button type="button" onClick={convertToCamel} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Camel case</button>
-            <button type="button" onClick={Clipboardcopy_text} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Copy</button>
-            <button type="button" onClick={removeWhitespace} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>White Space</button>
-            <button type="button" onClick={cleartext} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 mx-3 text`}>Clear text</button>
+            <button type="button" onClick={changetoupper} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3  text`}>Upper case</button>
+            <button type="button" onClick={changetolower} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3  text`}>Lower case</button>
+            <button type="button" onClick={convertToCamel} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3  text`}>Pascal case</button>
+            <button type="button" onClick={Clipboardcopy_text} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3  text`}>Copy</button>
+            <button type="button" onClick={removeWhitespace} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3  text`}>White Space</button>
+            <button type="button" onClick={cleartext} className={`btn bg-${props.mode==="light"?"dark":"light"} text-${props.mode} mt-3 text`}>Clear text</button>
         </div>
         <hr className="light"></hr>
         <div className="download">  

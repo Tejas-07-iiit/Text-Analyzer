@@ -7,6 +7,7 @@ import About from './Components/About';
 import {Route , Routes} from "react-router-dom";
 import Contact from './Components/Contact';
 import { HashRouter } from "react-router-dom";
+// import Dropdown from './Components/Dropdown';
 // import Gemini from './Components/Gemini';
 
 function App() {
@@ -31,16 +32,16 @@ function App() {
       document.body.style.backgroundColor = 'white';
     }
   }
-
   
   return (
     <>
     <HashRouter>
       <Navbar modechange={modechange} mode = {mode}/>
       <Alert alert = {alert}/>
-      
+     
       <Routes>
           {/* <Route exact path="/textspark" element={<Gemini mode = {mode} />}/> */}
+          {/* <Route exact path='/Dropdown' element={<Dropdown/>}/> */}
           <Route exact path="/about" element={<About mode = {mode} />}/>
           <Route exact path="/contact" element={<Contact mode = {mode}/>}/>
           <Route exact path="/" element ={<Analyzer mode = {mode} showalert = {showalert}/>}/>
