@@ -23,21 +23,21 @@ function Navbar0(props) {
     <>
         <nav className='bg-dark custom-nav'>
             <div className="my-2 text textanalyzer">
-                    <Link className={`navbar-brand ${location.pathname==="/"? "active": ""}`} to="/">Text-Analyzer</Link>
+                    <Link className={`navbar-brand ${location.pathname==="/"? "active1": "nonactive"}`} style={{color:"white"}} to="/">Text-Analyzer</Link>
             </div>
-                {!size && <div>
+                {!size && <div style={{marginTop:"10px"}}>
                     <ul className="navbar-nav text-wrap">
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} style={{marginTop:'3px'}} to="/">Home</Link>
+                            <Link className={`link-nav ${location.pathname==="/"? "active1": "nonactive"}`} to="/">Home</Link>
                          </li>
                         {/* <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/textspark"? 'active': "" }`} style={{marginTop:'3px'}} to="/textspark">TextSpark</Link>
+                            <Link className={`nav-link ${location.pathname==="/textspark"? 'active1': "" }`} style={{marginTop:'3px'}} to="/textspark">TextSpark</Link>
                         </li> */}
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/about"? "active": ""}`} style={{marginTop:'3px'}} to="/about">About</Link>
+                            <Link className={`link-nav ${location.pathname==="/about"? "active1": "nonactive"}`} to="/about">About</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/contact"? "active": "" }`} style={{marginTop:'3px'}} to="/contact">Contact</Link>
+                            <Link className={`link-nav ${location.pathname==="/contact"? "active1": "nonactive" }`}  to="/contact">Contact</Link>
                         </li>
                         
                     </ul>

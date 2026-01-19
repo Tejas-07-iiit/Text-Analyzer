@@ -11,9 +11,9 @@ const Dropdown = () => {
         <button onClick={()=>{setopen(!open)}} className="dropbtn"><FontAwesomeIcon className="icon-gray" icon={faBars} size="2x" /></button>
         
         {open && <div className="dropdown-content" id="dropdown-c">
-            <Link onClick={()=>{setopen(!open)}} className="link" to="/">Home</Link>
-            <Link onClick={()=>{setopen(!open)}} className="link" to="/about">About</Link>
-            <Link onClick={()=>{setopen(!open)}} className="link" to="/contact">Contact</Link>
+            <Link onClick={()=>{setopen(!open)}} className="link1" to="/">Home</Link>
+            <Link onClick={()=>{setopen(!open)}} className="link1" to="/about">About</Link>
+            <Link onClick={()=>{setopen(!open)}} className="link1" to="/contact">Contact</Link>
         </div>  
         }
         </div>
