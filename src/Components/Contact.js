@@ -28,7 +28,7 @@ my goal is to make text processing simple for everyone.`
 
                     <div className="mb-1">
                         <label htmlFor="exampleInputPassword1" name="Description" className={`form-label text-${props.mode==='light'?'dark':'light'}  text`}>Query or Review</label>
-                        <textarea className={`form-control text-${props.mode!=="light"?"dark":"light"} custom-text`} id="exampleFormControlTextarea1" rows="4"></textarea>
+                        <textarea name='query' className={`form-control text-${props.mode==="light"?"dark":"light"} custom-text`} id="exampleFormControlTextarea1" rows="4"></textarea>
                     </div>
 
                     <button type="submit" name="Button" className={`btn btn-${props.mode==='light'?'dark':'light'} text`}>Submit</button>
