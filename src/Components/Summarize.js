@@ -1,15 +1,12 @@
-import { GoogleGenAI } from "@google/genai";
 import { useState } from "react";
 import Loader from "./Loader"
-const Gemini = () => {
-  console.log("API KEY:", process.env.GEMINI_API_KEY);
+
+const Gemini = (props) => {
 
 
   const [summary,setSummary] = useState("")
   const [output,setOutput] = useState("")
   const [load , setload] = useState(false)
-  
-  const apikey = process.env.GEMINI_API_KEY
 
   const prompt = `
 You are an expert content summarizer.
@@ -46,23 +43,45 @@ Output format example:
 Now summarize the following text: 
 `
 
-const ai = new GoogleGenAI({apiKey:apikey});
+// const ai = new GoogleGenAI({apiKey:apikey});
+// const summarize = async () => {
+//   setload(true)
+//   const response = await ai.models.generateContent({
+//         model: "gemini-2.5-flash-lite",
+//         contents: prompt+summary,
+//       });
+//       const ans = response.text
+//       setload(false)
+//       setOutput(ans)
+      
+//   }
+
 const summarize = async () => {
   setload(true)
-  const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash-lite",
-        contents: prompt+summary,
-      });
-      const ans = response.text
-      setload(false)
-      setOutput(ans)
-      
-  }
-
+  const res1 = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+  method: 'POST',
+  headers: {
+    Authorization: 'Bearer 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',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    model: 'openai/gpt-oss-120b',
+    messages: [
+      {
+        role: 'user',
+        content: prompt+summary,
+      },
+    ],
+  }),
+});
+  const res = await res1.json();
+  
+  setOutput(res.choices[0].message.content)
+  setload(false)
+  // console.log(ans)
+}
 
   const handletext = (event) => {
-    console.log(summary)
-    console.log(output+"hi i am output")
     setSummary(event.target.value)
   }
 
@@ -72,17 +91,17 @@ const summarize = async () => {
 
   return (
     
-      <div id = "ai" className="ai">
-        <h3 className="text" style={{color:"#F2F2F2"}}>AI Text Summarizer</h3>
-        <pre className="text">{desc}</pre>
-        <textarea className="input" onChange={handletext} defaultValue={"Paste Your Text Here..."}></textarea>
+      <div id = "ai" className={`ai bg-${props.mode === "light" ? "light" : "custom"}`}>
+        <h3 className={`text-${props.mode === 'light'?'dark':'light'} text`} style={{color:"#F2F2F2"}}>AI Text Summarizer</h3>
+        <pre className={`text-${props.mode === 'light'?'dark':'light'} text`}>{desc}</pre>
+        <textarea className="input" onChange={handletext} style={{border:"2px solid black" , borderRadius:"10px" , overflow:"hidden"}} defaultValue={"Paste Your Text Here..."}></textarea>
         <button onClick={summarize} className="ai-btn">Generate Summary</button>
         <div className="line_ai"></div>
 
         {
          load && <Loader />
         }
-        <textarea className="output" id="height_text" value={output} readOnly ></textarea>
+        <textarea className={`text-${props.mode === 'light'?'dark':'light'} output ou-${props.mode === "light"?"dark":"light"}`} id="height_text" value={output} readOnly ></textarea>
 
         {/* <pre className="output">{output}</pre> */}
       </div>

@@ -7,8 +7,7 @@ import About from './Components/About';
 import {Route , Routes} from "react-router-dom";
 import Contact from './Components/Contact';
 import { HashRouter } from "react-router-dom";
-// import Dropdown from './Components/Dropdown';
-// import Gemini from './Components/Gemini';
+import Gemini from './Components/Summarize';
 
 function App() {
 
@@ -40,7 +39,7 @@ function App() {
       <Alert alert = {alert}/>
      
       <Routes>
-          {/* <Route exact path="/textspark" element={<Gemini mode = {mode} />}/> */}
+          <Route exact path="/textspark" element={<Gemini mode = {mode} />}/>
           <Route exact path="/about" element={<About mode = {mode} />}/>
           <Route exact path="/contact" element={<Contact mode = {mode}/>}/>
           <Route exact path="/" element ={<Analyzer mode = {mode} showalert = {showalert}/>}/>

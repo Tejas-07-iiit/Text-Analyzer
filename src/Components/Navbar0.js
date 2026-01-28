@@ -4,7 +4,7 @@ import { useState } from "react";
 function Navbar0(props) {
 
     let location = useLocation()
-    console.log(location)
+    // console.log(location)
     const [size,setsize] = useState(false)
 
     const size1 = () => {
@@ -30,14 +30,14 @@ function Navbar0(props) {
                         <li className="nav-item">
                             <Link className={`link-nav ${location.pathname==="/"? "active1": "nonactive"}`} to="/">Home</Link>
                          </li>
-                        {/* <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/textspark"? 'active1': "" }`} style={{marginTop:'3px'}} to="/textspark">TextSpark</Link>
-                        </li> */}
                         <li className="nav-item">
                             <Link className={`link-nav ${location.pathname==="/about"? "active1": "nonactive"}`} to="/about">About</Link>
                         </li>
                         <li className="nav-item">
                             <Link className={`link-nav ${location.pathname==="/contact"? "active1": "nonactive" }`}  to="/contact">Contact</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className={`link-nav ${location.pathname==="/textspark"? 'active1': "nonactive" }`} style={{marginTop:'3px'}} to="/textspark">TextSpark</Link>
                         </li>
                         
                     </ul>

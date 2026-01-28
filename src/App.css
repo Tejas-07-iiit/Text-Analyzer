@@ -493,7 +493,7 @@ body {
 
 .output { 
   width: 80%;
-  background-color: #191919;
+  /* background-color: #191919; */
   margin-right: 110px;
   color: white;
   margin-left: 110px;
@@ -501,6 +501,17 @@ body {
   min-height: 100vh;
   outline: none;
   box-shadow: none;
+}
+
+.bg-custom {
+  background-color: #191919;
+}
+.ou-light {
+  background-color: #191919;
+}
+
+.ou-dark {
+  background-color: white;
 }
 
 .loader {

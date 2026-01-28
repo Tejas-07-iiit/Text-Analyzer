@@ -20,7 +20,7 @@ my goal is to make text processing simple for everyone.`
                         <input className="form-control" name="Name"/>
                     </div>
 
-                    <div className="mb-1"> 
+                    <div class3Name="mb-1"> 
                         <label htmlFor="exampleInputEmail1"  className={`form-label text-${props.mode==='light'?'dark':'light'} text`}>Email Address</label>
                         <input type="email" className="form-control" name="Email" id="exampleInputEmail1" aria-describedby="emailHelp"/>
                         <pre id="emailHelp" className={`form-text text`}>We'll never share your email with anyone else.</pre>

@@ -54,7 +54,7 @@ function Analyzer(props) {
     }
 
     const convertToCamel = () => {
-        console.log(text)
+        // console.log(text)
         let t1 = text.split(' ')
         for (let i = 0; i < t1.length; i++) {
             if(t1[i] !== '/[0-9]/' && t1[i] !== ''){
@@ -62,7 +62,7 @@ function Analyzer(props) {
             }
         }
         setText(t1.join(" "))
-        console.log(text)
+        // console.log(text)
     }   
 
     const Pdf_mail = () => {
