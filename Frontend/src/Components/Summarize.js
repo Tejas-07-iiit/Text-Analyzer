@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Loader from "./Loader"
 import axios from "axios"
+
+require('dotenv').config()
+
 const Gemini = (props) => {
 
 
