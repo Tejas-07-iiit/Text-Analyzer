@@ -2,8 +2,6 @@ import { useState } from "react";
 import Loader from "./Loader"
 import axios from "axios"
 
-require('dotenv').config()
-
 const Gemini = (props) => {
 
 
@@ -63,7 +61,7 @@ const summarize = async () => {
     setload(true)
     const content = prompt+summary;
     try {
-    const response = await axios.post(`${process.env.API_URL}`,{
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}`,{
       content
     })
     setload(false)
@@ -101,4 +99,4 @@ const summarize = async () => {
   )
 }
 
-export default Gemini
+export default Gemini;
