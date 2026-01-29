@@ -24,7 +24,6 @@ app.post("/api/genrate" , async (req , res)=> {
                 }
                 ]
             },
-
             {
             headers : {
                 Authorization : `Bearer ${process.env.OPEN_API}`,
@@ -43,5 +42,5 @@ app.post("/api/genrate" , async (req , res)=> {
 })
 
 app.listen(process.env.PORT , () => {
-    console.log("Your app is running on port : " , process.env.PORT)
+    console.log("Your Server is running on port : " , process.env.PORT)
 })

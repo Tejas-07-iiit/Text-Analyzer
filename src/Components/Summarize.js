@@ -60,7 +60,7 @@ const summarize = async () => {
     setload(true)
     const content = prompt+summary;
     try {
-    const response = await axios.post("http://localhost:4000/api/genrate",{
+    const response = await axios.post(`${process.env.API_URL}`,{
       content
     })
     setload(false)
