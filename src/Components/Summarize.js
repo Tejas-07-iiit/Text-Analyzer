@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Loader from "./Loader"
-
+import axios from "axios"
 const Gemini = (props) => {
 
 
@@ -57,28 +57,18 @@ Now summarize the following text:
 //   }
 
 const summarize = async () => {
-  setload(true)
-  const res1 = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-  method: 'POST',
-  headers: {
-    Authorization: 'Bearer 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',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    model: 'openai/gpt-oss-120b',
-    messages: [
-      {
-        role: 'user',
-        content: prompt+summary,
-      },
-    ],
-  }),
-});
-  const res = await res1.json();
-  
-  setOutput(res.choices[0].message.content)
-  setload(false)
-  // console.log(ans)
+    setload(true)
+    const content = prompt+summary;
+    try {
+    const response = await axios.post("http://localhost:4000/api/genrate",{
+      content
+    })
+    setload(false)
+    // console.log(response.data)
+    setOutput(response.data)
+  } catch (error) {
+    console.log("Something went wrong : ",error.message)
+  }
 }
 
   const handletext = (event) => {
@@ -94,7 +84,7 @@ const summarize = async () => {
       <div id = "ai" className={`ai bg-${props.mode === "light" ? "light" : "custom"}`}>
         <h3 className={`text-${props.mode === 'light'?'dark':'light'} text`} style={{color:"#F2F2F2"}}>AI Text Summarizer</h3>
         <pre className={`text-${props.mode === 'light'?'dark':'light'} text`}>{desc}</pre>
-        <textarea className="input" onChange={handletext} style={{border:"2px solid black" , borderRadius:"10px" , overflow:"hidden"}} defaultValue={"Paste Your Text Here..."}></textarea>
+        <textarea className="input scroll-area" onChange={handletext} style={{border:"2px solid black"}} defaultValue={"Paste Your Text Here..."}></textarea>
         <button onClick={summarize} className="ai-btn">Generate Summary</button>
         <div className="line_ai"></div>
 
@@ -103,7 +93,6 @@ const summarize = async () => {
         }
         <textarea className={`text-${props.mode === 'light'?'dark':'light'} output ou-${props.mode === "light"?"dark":"light"}`} id="height_text" value={output} readOnly ></textarea>
 
-        {/* <pre className="output">{output}</pre> */}
       </div>
     
   )

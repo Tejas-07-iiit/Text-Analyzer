@@ -422,10 +422,10 @@ body {
 
 .ai .input {
   width:55%;
-  height: 100px;
+  /* height: 100px; */
   border: 1px solid black;
   border-radius: 12px;
-  color: #00000092;
+  color: #000000;
   padding-top: 3px;
   padding-left: 5px;
 }
@@ -511,7 +511,23 @@ body {
 }
 
 .ou-dark {
-  background-color: white;
+  background-color: #f8f9fa;
+}
+
+.scroll-area {
+  height: 224px;
+  overflow-y: auto;
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* IE / Edge */
+  -ms-overflow-style: none;
+}
+
+/* Chrome / Safari */
+.scroll-area::-webkit-scrollbar {
+  display: none;
 }
 
 .loader {
@@ -520,7 +536,7 @@ body {
         border-radius: 50%;
         width: 48px;
         height: 48px;
-        color: #fff;
+        color: #1ce720;
       }
 .loader:before,
 .loader:after {
@@ -536,7 +552,7 @@ body {
     animation: 1s spin linear infinite;
   }
   .loader:after {
-    color: #FF3D00;
+    color: #cde749;
     transform: rotateY(70deg);
     animation-delay: .4s;
   }
