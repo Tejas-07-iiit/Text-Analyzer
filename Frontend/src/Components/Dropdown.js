@@ -14,6 +14,7 @@ const Dropdown = () => {
             <Link onClick={()=>{setopen(!open)}} className="link1" to="/">Home</Link>
             <Link onClick={()=>{setopen(!open)}} className="link1" to="/about">About</Link>
             <Link onClick={()=>{setopen(!open)}} className="link1" to="/contact">Contact</Link>
+            <Link onClick={()=>{setopen(!open)}} className="link1" to="/textspark">Contact</Link>
         </div>  
         }
         </div>
