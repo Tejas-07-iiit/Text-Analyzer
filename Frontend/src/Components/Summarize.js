@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Loader from "./Loader";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWandMagicSparkles, faCopy, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faWandMagicSparkles, faCopy } from '@fortawesome/free-solid-svg-icons';
 
 const Gemini = (props) => {
   const [summary, setSummary] = useState("");

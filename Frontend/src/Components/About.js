@@ -8,8 +8,7 @@ import {
   faPenFancy,
   faShieldHalved,
   faBolt,
-  faWandMagicSparkles,
-  faCircleCheck
+  faWandMagicSparkles
 } from '@fortawesome/free-solid-svg-icons';
 
 const About = (props) => {

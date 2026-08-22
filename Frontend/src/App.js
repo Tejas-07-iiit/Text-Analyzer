@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar0';
 import Analyzer from './Components/Analyzer';
 import Alert from './Components/Alert';
+import { Route, Routes } from "react-router-dom";
 import About from './Components/About';
-import {Route , Routes} from "react-router-dom";
 import Contact from './Components/Contact';
 import { HashRouter } from "react-router-dom";
 import Gemini from './Components/Summarize';
 
 function App() {
 
-  const [mode , changeMode] = useState("light")
-  const [alert , setalert] = useState(null)
+  const [mode, changeMode] = useState("light");
+  const [alert, setalert] = useState(null);
 
   const showalert = (message) => {
-      setalert(message)
-      setTimeout(() => {
-        setalert(null)
-      }, 1800);
-  } 
+    setalert(message);
+    setTimeout(() => {
+      setalert(null);
+    }, 1800);
+  };
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.className = mode === 'dark' ? 'dark-mode' : 'light-mode';
   }, [mode]);
 
