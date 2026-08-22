@@ -1,13 +1,13 @@
-import { useState } from "react";
-import Loader from "./Loader"
-import axios from "axios"
+import React, { useState } from "react";
+import Loader from "./Loader";
+import axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWandMagicSparkles, faCopy, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const Gemini = (props) => {
-
-
-  const [summary,setSummary] = useState("")
-  const [output,setOutput] = useState("")
-  const [load , setload] = useState(false)
+  const [summary, setSummary] = useState("");
+  const [output, setOutput] = useState("");
+  const [load, setload] = useState(false);
 
   const prompt = `
 You are an expert content summarizer.
@@ -39,64 +39,101 @@ Output format example:
 • Point 3 …
 • Point 4 …
 
-
-
 Now summarize the following text: 
-`
+`;
 
-// const ai = new GoogleGenAI({apiKey:apikey});
-// const summarize = async () => {
-//   setload(true)
-//   const response = await ai.models.generateContent({
-//         model: "gemini-2.5-flash-lite",
-//         contents: prompt+summary,
-//       });
-//       const ans = response.text
-//       setload(false)
-//       setOutput(ans)
-      
-//   }
-
-const summarize = async () => {
-    setload(true)
-    const content = prompt+summary;
+  const summarize = async () => {
+    if (!summary.trim()) return;
+    setload(true);
+    const content = prompt + summary;
     try {
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}`,{
-      content
-    })
-    setload(false)
-    // console.log(response.data)
-    setOutput(response.data)
-  } catch (error) {
-    console.log("Something went wrong : ",error.message)
-  }
-}
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}`, {
+        content
+      });
+      setload(false);
+      setOutput(response.data);
+    } catch (error) {
+      setload(false);
+      console.log("Something went wrong : ", error.message);
+      setOutput("Unable to generate summary at this moment. Please verify backend service API.");
+    }
+  };
 
   const handletext = (event) => {
-    setSummary(event.target.value)
-  }
+    setSummary(event.target.value);
+  };
 
-  const desc = `
-  Provide the content below ,and i will create a concise 
-  summary for you. Let's make it engaging and clear`
+  const copyOutput = () => {
+    if (output) {
+      navigator.clipboard.writeText(output);
+    }
+  };
+
+  const isDark = props.mode === 'dark';
 
   return (
-    
-      <div id = "ai" className={`ai bg-${props.mode === "light" ? "light" : "custom"}`}>
-        <h3 className={`text-${props.mode === 'light'?'dark':'light'} text`} style={{color:"#F2F2F2"}}>AI Text Summarizer</h3>
-        <pre className={`text-${props.mode === 'light'?'dark':'light'} text`}>{desc}</pre>
-        <textarea className="input scroll-area" onChange={handletext} style={{border:"2px solid black"}} defaultValue={"Paste Your Text Here..."}></textarea>
-        <button onClick={summarize} className="ai-btn">Generate Summary</button>
-        <div className="line_ai"></div>
+    <div className={`ai-studio-wrapper ${isDark ? 'dark-theme' : 'light-theme'}`}>
+      <div className="container py-4">
+        {/* Header */}
+        <div className="ai-hero text-center mb-4">
+          <span className="badge-sparkle mb-2">
+            <FontAwesomeIcon icon={faWandMagicSparkles} className="me-2" /> Powered by AI
+          </span>
+          <h2 className="display-6 fw-bold">TextSpark AI Summarizer</h2>
+          <p className="ai-subtitle mx-auto text-muted">
+            Paste your article, report, or text below and let AI condense it into key insights and actionable points.
+          </p>
+        </div>
 
-        {
-         load && <Loader />
-        }
-        <textarea className={`text-${props.mode === 'light'?'dark':'light'} output ou-${props.mode === "light"?"dark":"light"}`} id="height_text" value={output} readOnly ></textarea>
+        {/* AI Workspace Card */}
+        <div className={`card glass-card ai-workspace-card p-4 mb-4 ${isDark ? 'card-dark' : 'card-light'}`}>
+          <label className="form-label fw-bold mb-2 small text-uppercase tracking-wider">
+            Input Content
+          </label>
+          <textarea
+            className="form-control ai-input-textarea mb-3"
+            onChange={handletext}
+            rows="7"
+            placeholder="Paste your text here to summarize..."
+            value={summary}
+          ></textarea>
 
+          <div className="d-flex justify-content-center">
+            <button onClick={summarize} disabled={load || !summary.trim()} className="ai-glow-btn">
+              <FontAwesomeIcon icon={faWandMagicSparkles} className="me-2" />
+              {load ? 'Generating Summary...' : 'Generate AI Summary'}
+            </button>
+          </div>
+        </div>
+
+        {/* Loader Indicator */}
+        {load && (
+          <div className="d-flex flex-column align-items-center justify-content-center my-4 py-3">
+            <Loader />
+            <span className="mt-3 text-muted small fw-semibold">AI is analyzing and summarizing your text...</span>
+          </div>
+        )}
+
+        {/* Output Section */}
+        {output && (
+          <div className={`card glass-card ai-output-card p-4 ${isDark ? 'card-dark' : 'card-light'}`}>
+            <div className="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3">
+              <h4 className="fw-bold mb-0 d-flex align-items-center gap-2">
+                <FontAwesomeIcon icon={faWandMagicSparkles} className="text-warning" />
+                Generated AI Summary
+              </h4>
+              <button onClick={copyOutput} className="btn btn-outline-custom btn-sm">
+                <FontAwesomeIcon icon={faCopy} className="me-1" /> Copy Summary
+              </button>
+            </div>
+            <div className="ai-output-formatted">
+              <pre className="output-pre">{output}</pre>
+            </div>
+          </div>
+        )}
       </div>
-    
-  )
-}
+    </div>
+  );
+};
 
 export default Gemini;

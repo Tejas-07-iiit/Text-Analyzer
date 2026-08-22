@@ -21,15 +21,12 @@ function App() {
       }, 1800);
   } 
 
+  React.useEffect(() => {
+    document.body.className = mode === 'dark' ? 'dark-mode' : 'light-mode';
+  }, [mode]);
+
   const modechange = () => {
-    if(mode === 'light') {
-      changeMode('dark')
-      document.body.style.backgroundColor = 'rgba(33, 37, 41, 0.92)';
-    }
-    else {
-      changeMode('light')
-      document.body.style.backgroundColor = 'white';
-    }
+    changeMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
   }
   
   return (
